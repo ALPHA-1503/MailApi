@@ -13,16 +13,12 @@ MAILJET_API_KEY = os.getenv("MJ_APIKEY_PUBLIC")
 MAILJET_API_SECRET = os.getenv("MJ_APIKEY_PRIVATE")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 
-
-def get_html(language, template_name):
-    file_path = os.path.join('html', f'{template_name}-{language}.html')
-
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            html_content = file.read()
-        return html_content
-    except FileNotFoundError:
-        return None
+@app.route('/info', methods=['GET'])
+def info():
+    return jsonify({
+        "status": "API is running",
+        "version": "1.0.0"
+    }), 200
 
 
 @app.route('/send-email', methods=['POST'])
