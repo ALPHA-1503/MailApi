@@ -16,8 +16,11 @@ RUN pip show gunicorn
 # Copy the rest of the application code into the container
 COPY . .
 
+# Copy the .env file into the container
+COPY .env .
+
 # Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 8069
 
 # Run the application with gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8069", "app:app"]
