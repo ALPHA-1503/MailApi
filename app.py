@@ -7,7 +7,7 @@ from flask_cors import CORS
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://mailapi.4cores.be"}})
 
 MAILJET_API_KEY = os.getenv("MJ_APIKEY_PUBLIC")
 MAILJET_API_SECRET = os.getenv("MJ_APIKEY_PRIVATE")
